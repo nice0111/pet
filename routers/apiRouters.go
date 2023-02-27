@@ -14,5 +14,8 @@ func ApiRoutersInit(r *gin.Engine) {
 		apiRouters.PUT("/changeuser", api.Change)
 		apiRouters.DELETE("/deluser", api.Del)
 		apiRouters.POST("/register", api.Register)
+		apiRouters.POST("/login", api.Login)
+		apiRouters.POST("/petid", api.PetId)
+		apiRouters.POST("/ishot", api.Ishot)
 	}
 }

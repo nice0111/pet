@@ -3,6 +3,7 @@ package utils
 import (
 
 	// "heshang_go/pkg/setting"
+
 	"fmt"
 	"time"
 
@@ -42,17 +43,22 @@ func GenerateToken(data JwtData) (string, error) {
 
 func ParseToken(token string) (*Claims, error) {
 	tokenClaims, err := jwt.ParseWithClaims(token, &Claims{}, func(token *jwt.Token) (interface{}, error) {
-		// fmt.Printf("%v", jwtSecret)
 		return jwtSecret, nil
 	})
 
-	fmt.Printf("jwt-tokenClaims:%v\n", tokenClaims)
-
+	// fmt.Printf("jwt-tokenClaims:%v\n", tokenClaims)
+	if err != nil {
+		fmt.Println("有错误")
+	}
 	if tokenClaims != nil {
+		fmt.Println("正在执行")
 		fmt.Printf("jwt-tokenClaims:%v\n", tokenClaims.Claims.(*Claims))
 		if claims, ok := tokenClaims.Claims.(*Claims); ok && tokenClaims.Valid {
+			fmt.Println("-------~~~~")
 			fmt.Printf("jwt-claims:%v\n", claims)
+			fmt.Printf("%v", &claims)
 			return claims, nil
+
 		}
 
 	}
